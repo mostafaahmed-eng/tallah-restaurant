@@ -60,7 +60,7 @@ export default function Hero() {
                 <br />
                 <span className="text-white">وفرايد تشيكن</span>
                 <br />
-                <span className="gradient-text">في المدينة</span>
+                <span className="gradient-text">في القناطر الخيرية</span>
               </h1>
             </TextReveal>
 
@@ -83,7 +83,7 @@ export default function Hero() {
                   <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
                 </motion.a>
                 <motion.a
-                  href="https://wa.me/201234567890"
+                  href="https://wa.me/201154930626"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

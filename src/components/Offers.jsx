@@ -72,7 +72,7 @@ export default function Offers() {
                         حتى {new Date(offer.validUntil).toLocaleDateString("ar-EG")}
                       </span>
                       <a
-                        href="https://wa.me/201234567890"
+                        href="https://wa.me/201154930626"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-neon-blue text-sm font-medium hover:underline"
@@ -124,7 +124,7 @@ export default function Offers() {
                   )}
                 </span>
                 <a
-                  href="https://wa.me/201234567890"
+                  href="https://wa.me/201154930626"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neon-blue text-sm font-medium hover:underline"

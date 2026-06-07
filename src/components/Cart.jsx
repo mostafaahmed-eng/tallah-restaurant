@@ -134,7 +134,7 @@ export default function Cart({ isOpen, onClose }) {
                     تفريغ
                   </button>
                   <motion.a
-                    href={`https://wa.me/201234567890?text=${whatsappMessage}`}
+                    href={`https://wa.me/201154930626?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}

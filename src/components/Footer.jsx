@@ -29,12 +29,12 @@ export default function Footer() {
               <span className="text-xs text-gray-500 font-light">Tallah</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              أفضل بيتزا وبرجر وفرايد تشيكن في المدينة. طعام عالي الجودة، خدمة
+              أفضل بيتزا وبرجر وفرايد تشيكن في القناطر الخيرية. طعام عالي الجودة، خدمة
               سريعة، وأجواء لا تُنسى.
             </p>
             <div className="flex gap-3">
               <motion.a
-                href="https://facebook.com/tallah"
+                href="https://www.facebook.com/share/1HQjTtszfe/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -43,7 +43,7 @@ export default function Footer() {
                 <FaFacebookF />
               </motion.a>
               <motion.a
-                href="https://instagram.com/tallah"
+                href="https://www.instagram.com/cafe_tallah?igsh=MXU2a2cza2p1eWg5cQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -52,7 +52,7 @@ export default function Footer() {
                 <FaInstagram />
               </motion.a>
               <motion.a
-                href="https://wa.me/201234567890"
+                href="https://wa.me/201154930626"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -84,28 +84,35 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="tel:+201234567890"
+                  href="tel:01154930626"
                   className="flex items-center gap-2 text-gray-400 hover:text-neon-blue text-sm transition-colors"
                 >
                   <FaPhoneAlt className="text-neon-blue text-xs" />
-                  +20 123 456 7890
+                  01154930626
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/201234567890"
+                  href="https://wa.me/201154930626"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-gray-400 hover:text-green-400 text-sm transition-colors"
                 >
                   <FaWhatsapp className="text-green-400 text-xs" />
-                  +20 123 456 7890
+                  01154930626
                 </a>
               </li>
               <li>
                 <span className="flex items-center gap-2 text-gray-400 text-sm">
                   <FaMapMarkerAlt className="text-neon-blue text-xs" />
-                  القاهرة، مصر
+                  <a
+                    href="https://maps.app.goo.gl/A8zJVdbgF3ph4Ju16?g_st=aw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-neon-blue transition-colors"
+                  >
+                    القناطر الخيرية، مصر
+                  </a>
                 </span>
               </li>
             </ul>
@@ -126,7 +133,7 @@ export default function Footer() {
             <div className="mt-4 p-3 rounded-xl bg-dark-card border border-dark-border">
               <p className="text-gray-500 text-xs text-center mb-2">اطلب الآن عبر</p>
               <motion.a
-                href="https://wa.me/201234567890"
+                href="https://wa.me/201154930626"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}

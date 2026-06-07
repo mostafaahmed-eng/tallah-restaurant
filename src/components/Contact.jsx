@@ -11,13 +11,13 @@ import {
 import { TextReveal } from "../animations/TextReveal";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", message: "" });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSent(true);
-    setForm({ name: "", email: "", message: "" });
+    setForm({ name: "", message: "" });
     setTimeout(() => setSent(false), 3000);
   };
 
@@ -45,7 +45,7 @@ export default function Contact() {
             <TextReveal>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <motion.a
-                  href="tel:+201234567890"
+                  href="tel:01154930626"
                   whileHover={{ y: -4 }}
                   className="p-5 rounded-2xl bg-dark-card border border-dark-border hover:border-neon-blue/30 transition-all duration-500"
                 >
@@ -53,11 +53,11 @@ export default function Contact() {
                     <FaPhoneAlt className="text-neon-blue text-lg" />
                   </div>
                   <h4 className="font-bold text-white mb-1">اتصل بنا</h4>
-                  <p className="text-gray-400 text-sm">+20 123 456 7890</p>
+                  <p className="text-gray-400 text-sm">01154930626</p>
                 </motion.a>
 
                 <motion.a
-                  href="https://wa.me/201234567890"
+                  href="https://wa.me/201154930626"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4 }}
@@ -67,11 +67,11 @@ export default function Contact() {
                     <FaWhatsapp className="text-green-400 text-lg" />
                   </div>
                   <h4 className="font-bold text-white mb-1">واتساب</h4>
-                  <p className="text-gray-400 text-sm">+20 123 456 7890</p>
+                  <p className="text-gray-400 text-sm">01154930626</p>
                 </motion.a>
 
                 <motion.a
-                  href="https://facebook.com/tallah"
+                  href="https://www.facebook.com/share/1HQjTtszfe/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4 }}
@@ -85,7 +85,7 @@ export default function Contact() {
                 </motion.a>
 
                 <motion.a
-                  href="https://instagram.com/tallah"
+                  href="https://www.instagram.com/cafe_tallah?igsh=MXU2a2cza2p1eWg5cQ=="
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -4 }}
@@ -95,7 +95,7 @@ export default function Contact() {
                     <FaInstagram className="text-pink-400 text-lg" />
                   </div>
                   <h4 className="font-bold text-white mb-1">انستجرام</h4>
-                  <p className="text-gray-400 text-sm">@tallah.restaurant</p>
+                  <p className="text-gray-400 text-sm">@cafe_tallah</p>
                 </motion.a>
               </div>
             </TextReveal>
@@ -113,6 +113,17 @@ export default function Contact() {
                   title="Tallah Location"
                 />
               </div>
+              <motion.a
+                href="https://maps.app.goo.gl/A8zJVdbgF3ph4Ju16?g_st=aw"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon-blue/10 text-neon-blue border border-neon-blue/30 font-medium hover:bg-neon-blue/20 transition-all duration-300"
+              >
+                <FaMapMarkerAlt />
+                <span>Open Location in Google Maps</span>
+              </motion.a>
             </TextReveal>
           </div>
 
@@ -130,15 +141,14 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-dark-border text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/30 transition-all"
                   />
                 </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="البريد الإلكتروني"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-dark-border text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/30 transition-all"
-                  />
+                <div className="p-4 rounded-xl bg-dark-bg border border-dark-border flex items-center gap-3">
+                  <FaPhoneAlt className="text-neon-blue text-lg flex-shrink-0" />
+                  <div>
+                    <p className="text-gray-400 text-xs">اتصل بنا مباشرة</p>
+                    <a href="tel:01154930626" className="text-white font-bold hover:text-neon-blue transition-colors">
+                      01154930626
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <textarea

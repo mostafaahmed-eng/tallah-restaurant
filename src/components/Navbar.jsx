@@ -102,7 +102,7 @@ export default function Navbar({ onCartOpen }) {
 
             <div className="flex items-center gap-3">
               <motion.a
-                href="tel:+201234567890"
+                href="tel:01154930626"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-neon-blue/10 text-neon-blue border border-neon-blue/30 hover:bg-neon-blue/20 transition-all duration-300 text-sm font-medium"
@@ -112,7 +112,7 @@ export default function Navbar({ onCartOpen }) {
               </motion.a>
 
               <motion.a
-                href="https://wa.me/201234567890"
+                href="https://wa.me/201154930626"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -174,14 +174,14 @@ export default function Navbar({ onCartOpen }) {
                 ))}
                 <div className="mt-6 border-t border-dark-border pt-6 flex flex-col gap-3">
                   <a
-                    href="tel:+201234567890"
+                    href="tel:01154930626"
                     className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-neon-blue/10 text-neon-blue border border-neon-blue/30 font-medium"
                   >
                     <FaPhoneAlt />
                     <span>اتصل بنا</span>
                   </a>
                   <a
-                    href="https://wa.me/201234567890"
+                    href="https://wa.me/201154930626"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-center px-4 py-3 rounded-lg bg-neon-blue text-black font-bold"

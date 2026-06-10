@@ -2,8 +2,10 @@ import { useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaWhatsapp, FaPizzaSlice } from "react-icons/fa";
 import { TextReveal, FadeIn } from "../animations/TextReveal";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { t, lang } = useLanguage();
   const particles = useMemo(() =>
     Array.from({ length: 20 }, (_, i) => ({
       id: i,
@@ -49,25 +51,24 @@ export default function Hero() {
               >
                 <FaPizzaSlice className="text-neon-blue text-sm" />
                 <span className="text-neon-blue text-sm font-medium">
-                  مطعم وكافيه طلة
+                  {t("hero.badge")}
                 </span>
               </motion.div>
             </FadeIn>
 
             <TextReveal delay={0.2}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
-                <span className="gradient-text">أفضل بيتزا وبرجر</span>
+                <span className="gradient-text">{t("hero.title1")}</span>
                 <br />
-                <span className="text-white">وفرايد تشيكن</span>
+                <span className="text-white">{t("hero.title2")}</span>
                 <br />
-                <span className="gradient-text">في القناطر الخيرية</span>
+                <span className="gradient-text">{t("hero.title3")}</span>
               </h1>
             </TextReveal>
 
             <TextReveal delay={0.4}>
               <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                في طلة نقدم لك تجربة طعام فريدة. أشهى البيتزا، ألذ البرجر،
-                وأطعم الفرايض تشيكن. طعام عالي الجودة، خدمة سريعة، وأجواء لا تُنسى.
+                {t("hero.desc")}
               </p>
             </TextReveal>
 
@@ -79,8 +80,8 @@ export default function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-neon-blue text-black font-bold text-lg shadow-lg shadow-neon-blue/30 hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                 >
-                  <span>شاهد المنيو</span>
-                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                  <span>{t("hero.menuBtn")}</span>
+                  <FaArrowLeft className={`transition-transform ${lang === "ar" ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
                 </motion.a>
                 <motion.a
                   href="https://wa.me/201154930626"
@@ -91,7 +92,7 @@ export default function Hero() {
                   className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-neon-blue/50 text-neon-blue font-bold text-lg hover:bg-neon-blue/10 transition-all duration-300"
                 >
                   <FaWhatsapp className="text-xl" />
-                  <span>اطلب الآن</span>
+                  <span>{t("hero.orderBtn")}</span>
                 </motion.a>
               </div>
             </TextReveal>
@@ -100,17 +101,17 @@ export default function Hero() {
               <div className="flex items-center gap-8 mt-10 justify-center lg:justify-start">
                 <div className="text-center">
                   <div className="text-3xl font-black gradient-text">50+</div>
-                  <div className="text-gray-500 text-sm">صنف</div>
+                  <div className="text-gray-500 text-sm">{t("hero.stat1")}</div>
                 </div>
                 <div className="w-px h-12 bg-dark-border" />
                 <div className="text-center">
                   <div className="text-3xl font-black gradient-text">1000+</div>
-                  <div className="text-gray-500 text-sm">عميل سعيد</div>
+                  <div className="text-gray-500 text-sm">{t("hero.stat2")}</div>
                 </div>
                 <div className="w-px h-12 bg-dark-border" />
                 <div className="text-center">
                   <div className="text-3xl font-black gradient-text">4.9</div>
-                  <div className="text-gray-500 text-sm">تقييم</div>
+                  <div className="text-gray-500 text-sm">{t("hero.stat3")}</div>
                 </div>
               </div>
             </TextReveal>

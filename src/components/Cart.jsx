@@ -2,15 +2,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineX, HiPlus, HiMinus } from "react-icons/hi";
 import { FaTrash, FaShoppingBag, FaWhatsapp } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Cart({ isOpen, onClose }) {
+  const { t, lang } = useLanguage();
   const { cart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } =
     useCart();
 
+  const curr = t("menu.currency");
   const whatsappMessage = encodeURIComponent(
-    `طلب جديد من طلة:\n${cart
-      .map((item) => `- ${item.name} x${item.quantity} = ${item.price * item.quantity} ج.م`)
-      .join("\n")}\n\nالإجمالي: ${totalPrice} ج.م`
+    `${t("cart.newOrder")}:\n${cart
+      .map((item) => `- ${item.name} x${item.quantity} = ${item.price * item.quantity} ${curr}`)
+      .join("\n")}\n\n${t("cart.total")}: ${totalPrice} ${curr}`
   );
 
   return (
@@ -35,7 +38,7 @@ export default function Cart({ isOpen, onClose }) {
             <div className="flex items-center justify-between p-4 border-b border-dark-border">
               <div className="flex items-center gap-3">
                 <FaShoppingBag className="text-neon-blue text-xl" />
-                <h2 className="text-lg font-bold text-white">سلة المشتريات</h2>
+                <h2 className="text-lg font-bold text-white">{t("cart.title")}</h2>
                 {totalItems > 0 && (
                   <span className="px-2 py-0.5 rounded-full bg-neon-blue/10 text-neon-blue text-xs font-bold">
                     {totalItems}
@@ -54,8 +57,8 @@ export default function Cart({ isOpen, onClose }) {
               {cart.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
                   <FaShoppingBag className="text-6xl text-gray-600 mb-4" />
-                  <p className="text-gray-400 text-lg mb-2">السلة فارغة</p>
-                  <p className="text-gray-600 text-sm">أضف بعض الأطباق اللذيذة</p>
+                  <p className="text-gray-400 text-lg mb-2">{t("cart.empty")}</p>
+                  <p className="text-gray-600 text-sm">{t("cart.emptySub")}</p>
                 </div>
               ) : (
                 <div className="flex flex-col gap-3">
@@ -121,7 +124,7 @@ export default function Cart({ isOpen, onClose }) {
             {cart.length > 0 && (
               <div className="border-t border-dark-border p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">الإجمالي</span>
+                  <span className="text-gray-400">{t("cart.total")}</span>
                   <span className="text-2xl font-black gradient-text">
                     {totalPrice} <span className="text-sm">ج.م</span>
                   </span>
@@ -131,7 +134,7 @@ export default function Cart({ isOpen, onClose }) {
                     onClick={clearCart}
                     className="flex-1 px-4 py-3 rounded-xl border border-dark-border text-gray-400 hover:text-red-400 hover:border-red-400/30 transition-all duration-300 text-sm font-medium"
                   >
-                    تفريغ
+                    {t("cart.clear")}
                   </button>
                   <motion.a
                     href={`https://wa.me/201154930626?text=${whatsappMessage}`}
@@ -142,7 +145,7 @@ export default function Cart({ isOpen, onClose }) {
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-neon-blue text-black font-bold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
                   >
                     <FaWhatsapp className="text-lg" />
-                    <span>إرسال الطلب</span>
+                    <span>{t("cart.sendOrder")}</span>
                   </motion.a>
                 </div>
               </div>

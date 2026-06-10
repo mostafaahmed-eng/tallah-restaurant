@@ -6,17 +6,17 @@ import {
   FaInstagram,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-
-const quickLinks = [
-  { href: "#home", label: "الرئيسية" },
-  { href: "#menu", label: "المنيو" },
-  { href: "#offers", label: "العروض" },
-  { href: "#about", label: "نبذة عنا" },
-  { href: "#testimonials", label: "التقييمات" },
-  { href: "#contact", label: "تواصل معنا" },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
+  const { t, lang } = useLanguage();
+
+  const navKeys = ["home", "menu", "offers", "about", "testimonials", "contact"];
+  const quickLinks = navKeys.map((key) => ({
+    href: `#${key}`,
+    label: t(`nav.${key}`),
+  }));
+
   return (
     <footer className="relative border-t border-dark-border">
       <div className="absolute inset-0 bg-gradient-to-b from-dark-bg to-dark-secondary" />
@@ -29,8 +29,7 @@ export default function Footer() {
               <span className="text-xs text-gray-500 font-light">Tallah</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              أفضل بيتزا وبرجر وفرايد تشيكن في القناطر الخيرية. طعام عالي الجودة، خدمة
-              سريعة، وأجواء لا تُنسى.
+              {t("footer.desc")}
             </p>
             <div className="flex gap-3">
               <motion.a
@@ -64,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">روابط سريعة</h4>
+            <h4 className="text-white font-bold mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -80,7 +79,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">معلومات الاتصال</h4>
+            <h4 className="text-white font-bold mb-4">{t("footer.contactInfo")}</h4>
             <ul className="space-y-3">
               <li>
                 <a
@@ -111,7 +110,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="hover:text-neon-blue transition-colors"
                   >
-                    القناطر الخيرية، مصر
+                    {t("footer.location")}
                   </a>
                 </span>
               </li>
@@ -119,19 +118,19 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">ساعات العمل</h4>
+            <h4 className="text-white font-bold mb-4">{t("footer.hours")}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li className="flex justify-between">
-                <span>السبت - الخميس</span>
+                <span>{t("footer.satThu")}</span>
                 <span className="text-neon-blue">١٢:٠٠ م - ١٢:٠٠ ص</span>
               </li>
               <li className="flex justify-between">
-                <span>الجمعة</span>
+                <span>{t("footer.fri")}</span>
                 <span className="text-neon-blue">١:٠٠ م - ١٢:٠٠ ص</span>
               </li>
             </ul>
             <div className="mt-4 p-3 rounded-xl bg-dark-card border border-dark-border">
-              <p className="text-gray-500 text-xs text-center mb-2">اطلب الآن عبر</p>
+              <p className="text-gray-500 text-xs text-center mb-2">{t("footer.orderVia")}</p>
               <motion.a
                 href="https://wa.me/201154930626"
                 target="_blank"
@@ -140,7 +139,7 @@ export default function Footer() {
                 className="block text-center px-4 py-2 rounded-lg bg-green-500/10 text-green-400 border border-green-500/30 font-medium text-sm hover:bg-green-500/20 transition-all"
               >
                 <FaWhatsapp className="inline ml-1" />
-                واتساب
+                {t("contact.whatsapp")}
               </motion.a>
             </div>
           </div>
@@ -148,8 +147,8 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-dark-border text-center">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} مطعم وكافيه طلة - Tallah Restaurant & Cafe.
-            جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} {lang === "ar" ? "مطعم وكافيه طلة - Tallah Restaurant & Cafe. " : "Tallah Restaurant & Cafe. "}
+            {t("footer.copyright")}
           </p>
         </div>
       </div>

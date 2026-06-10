@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { CartProvider } from "./context/CartContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Cart from "./components/Cart";
@@ -23,36 +24,38 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
 
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-dark-bg text-white font-cairo">
-        <Navbar onCartOpen={() => setCartOpen(true)} />
-        <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+    <LanguageProvider>
+      <CartProvider>
+        <div className="min-h-screen bg-dark-bg text-white font-cairo">
+          <Navbar onCartOpen={() => setCartOpen(true)} />
+          <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
 
-        <main>
-          <Hero />
-          <Menu />
+          <main>
+            <Hero />
+            <Menu />
 
-          <Suspense fallback={<SectionFallback />}>
-            <Offers />
+            <Suspense fallback={<SectionFallback />}>
+              <Offers />
+            </Suspense>
+
+            <Suspense fallback={<SectionFallback />}>
+              <About />
+            </Suspense>
+
+            <Suspense fallback={<SectionFallback />}>
+              <Testimonials />
+            </Suspense>
+
+            <Suspense fallback={<SectionFallback />}>
+              <Contact />
+            </Suspense>
+          </main>
+
+          <Suspense fallback={null}>
+            <Footer />
           </Suspense>
-
-          <Suspense fallback={<SectionFallback />}>
-            <About />
-          </Suspense>
-
-          <Suspense fallback={<SectionFallback />}>
-            <Testimonials />
-          </Suspense>
-
-          <Suspense fallback={<SectionFallback />}>
-            <Contact />
-          </Suspense>
-        </main>
-
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
-      </div>
-    </CartProvider>
+        </div>
+      </CartProvider>
+    </LanguageProvider>
   );
 }

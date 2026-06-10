@@ -4,21 +4,22 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FaShoppingCart, FaPhoneAlt } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import { useScrollPosition } from "../hooks/useScrollPosition";
+import { useLanguage } from "../context/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const navLinks = [
-  { href: "#home", label: "الرئيسية" },
-  { href: "#menu", label: "المنيو" },
-  { href: "#offers", label: "العروض" },
-  { href: "#about", label: "نبذة عنا" },
-  { href: "#testimonials", label: "التقييمات" },
-  { href: "#contact", label: "تواصل معنا" },
-];
+const navKeys = ["home", "menu", "offers", "about", "testimonials", "contact"];
 
 export default function Navbar({ onCartOpen }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { isScrolled } = useScrollPosition();
   const { totalItems } = useCart();
+  const { t } = useLanguage();
+
+  const navLinks = navKeys.map((key) => ({
+    href: `#${key}`,
+    label: t(`nav.${key}`),
+  }));
 
   useEffect(() => {
     const handleScrollSpy = () => {
@@ -108,8 +109,10 @@ export default function Navbar({ onCartOpen }) {
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-neon-blue/10 text-neon-blue border border-neon-blue/30 hover:bg-neon-blue/20 transition-all duration-300 text-sm font-medium"
               >
                 <FaPhoneAlt className="text-xs" />
-                <span>اتصل بنا</span>
+                <span>{t("nav.call")}</span>
               </motion.a>
+
+              <LanguageSwitcher className="hidden md:flex" />
 
               <motion.a
                 href="https://wa.me/201154930626"
@@ -119,7 +122,7 @@ export default function Navbar({ onCartOpen }) {
                 whileTap={{ scale: 0.95 }}
                 className="hidden md:block px-5 py-2 rounded-lg bg-neon-blue text-black font-bold text-sm hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
               >
-                اطلب الآن
+                {t("nav.order")}
               </motion.a>
 
               <button
@@ -178,15 +181,16 @@ export default function Navbar({ onCartOpen }) {
                     className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-neon-blue/10 text-neon-blue border border-neon-blue/30 font-medium"
                   >
                     <FaPhoneAlt />
-                    <span>اتصل بنا</span>
+                    <span>{t("nav.call")}</span>
                   </a>
+                  <LanguageSwitcher className="w-full justify-center" />
                   <a
                     href="https://wa.me/201154930626"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-center px-4 py-3 rounded-lg bg-neon-blue text-black font-bold"
                   >
-                    اطلب الآن
+                    {t("nav.order")}
                   </a>
                 </div>
               </div>

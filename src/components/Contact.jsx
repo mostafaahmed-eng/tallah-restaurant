@@ -9,15 +9,21 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import { TextReveal } from "../animations/TextReveal";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", message: "" });
+  const { t } = useLanguage();
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const msg = encodeURIComponent(
+      `Name: ${form.name}\nPhone: ${form.phone}\nMessage: ${form.message}`
+    );
+    window.open(`https://wa.me/201154930626?text=${msg}`, "_blank");
     setSent(true);
-    setForm({ name: "", message: "" });
+    setForm({ name: "", phone: "", message: "" });
     setTimeout(() => setSent(false), 3000);
   };
 
@@ -29,13 +35,13 @@ export default function Contact() {
         <TextReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-sm font-medium mb-4">
-              تواصل معنا
+              {t("contact.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="gradient-text">تواصل</span> مع طلة
+              <span className="gradient-text">{t("contact.title")}</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              نحن هنا لخدمتك على مدار الساعة
+              {t("contact.desc")}
             </p>
           </div>
         </TextReveal>
@@ -52,7 +58,7 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center mb-3">
                     <FaPhoneAlt className="text-neon-blue text-lg" />
                   </div>
-                  <h4 className="font-bold text-white mb-1">اتصل بنا</h4>
+                  <h4 className="font-bold text-white mb-1">{t("contact.call")}</h4>
                   <p className="text-gray-400 text-sm">01154930626</p>
                 </motion.a>
 
@@ -66,7 +72,7 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-3">
                     <FaWhatsapp className="text-green-400 text-lg" />
                   </div>
-                  <h4 className="font-bold text-white mb-1">واتساب</h4>
+                  <h4 className="font-bold text-white mb-1">{t("contact.whatsapp")}</h4>
                   <p className="text-gray-400 text-sm">01154930626</p>
                 </motion.a>
 
@@ -80,7 +86,7 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3">
                     <FaFacebookF className="text-blue-400 text-lg" />
                   </div>
-                  <h4 className="font-bold text-white mb-1">فيسبوك</h4>
+                  <h4 className="font-bold text-white mb-1">{t("contact.facebook")}</h4>
                   <p className="text-gray-400 text-sm">Tallah Restaurant</p>
                 </motion.a>
 
@@ -94,7 +100,7 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-3">
                     <FaInstagram className="text-pink-400 text-lg" />
                   </div>
-                  <h4 className="font-bold text-white mb-1">انستجرام</h4>
+                  <h4 className="font-bold text-white mb-1">{t("contact.instagram")}</h4>
                   <p className="text-gray-400 text-sm">@cafe_tallah</p>
                 </motion.a>
               </div>
@@ -122,37 +128,38 @@ export default function Contact() {
                 className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon-blue/10 text-neon-blue border border-neon-blue/30 font-medium hover:bg-neon-blue/20 transition-all duration-300"
               >
                 <FaMapMarkerAlt />
-                <span>Open Location in Google Maps</span>
+                <span>{t("contact.openMaps")}</span>
               </motion.a>
             </TextReveal>
           </div>
 
           <TextReveal delay={0.3}>
             <div className="p-6 md:p-8 rounded-2xl bg-dark-card border border-dark-border">
-              <h3 className="text-xl font-bold text-white mb-6">أرسل لنا رسالة</h3>
+              <h3 className="text-xl font-bold text-white mb-6">{t("contact.formTitle")}</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <input
                     type="text"
-                    placeholder="الاسم"
+                    placeholder={t("contact.nameLabel")}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     required
                     className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-dark-border text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/30 transition-all"
                   />
                 </div>
-                <div className="p-4 rounded-xl bg-dark-bg border border-dark-border flex items-center gap-3">
-                  <FaPhoneAlt className="text-neon-blue text-lg flex-shrink-0" />
-                  <div>
-                    <p className="text-gray-400 text-xs">اتصل بنا مباشرة</p>
-                    <a href="tel:01154930626" className="text-white font-bold hover:text-neon-blue transition-colors">
-                      01154930626
-                    </a>
-                  </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder={t("contact.phoneLabel")}
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-dark-border text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/30 transition-all"
+                  />
                 </div>
                 <div>
                   <textarea
-                    placeholder="رسالتك..."
+                    placeholder={t("contact.messageLabel")}
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -167,11 +174,11 @@ export default function Contact() {
                   className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon-blue text-black font-bold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
                 >
                   {sent ? (
-                    "تم الإرسال ✓"
+                    t("contact.sentMsg")
                   ) : (
                     <>
                       <FaPaperPlane />
-                      <span>إرسال</span>
+                      <span>{t("contact.sendBtn")}</span>
                     </>
                   )}
                 </motion.button>

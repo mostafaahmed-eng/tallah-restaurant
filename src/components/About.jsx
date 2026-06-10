@@ -1,31 +1,14 @@
 import { motion } from "framer-motion";
 import { FaLeaf, FaTruck, FaStar, FaHeart } from "react-icons/fa";
 import { TextReveal, FadeIn } from "../animations/TextReveal";
+import { useLanguage } from "../context/LanguageContext";
 
-const features = [
-  {
-    icon: FaLeaf,
-    title: "أفضل المكونات",
-    desc: "نستخدم أجود أنواع اللحوم والخضروات الطازجة وأفضل المكونات الطبيعية",
-  },
-  {
-    icon: FaTruck,
-    title: "خدمة سريعة",
-    desc: "توصيل سريع في جميع أنحاء المدينة خلال 30 دقيقة كحد أقصى",
-  },
-  {
-    icon: FaStar,
-    title: "جودة عالية",
-    desc: "نلتزم بأعلى معايير الجودة في الطهي والتقديم والنظافة",
-  },
-  {
-    icon: FaHeart,
-    title: "أجواء هادئة",
-    desc: "تصميم عصري وأجواء مريحة تناسب العائلات والأصدقاء",
-  },
-];
+const icons = [FaLeaf, FaTruck, FaStar, FaHeart];
 
 export default function About() {
+  const { t } = useLanguage();
+  const features = t("about.features");
+
   return (
     <section id="about" className="section-padding relative">
       <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-secondary/50 to-dark-bg" />
@@ -34,15 +17,13 @@ export default function About() {
         <TextReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-sm font-medium mb-4">
-              نبذة عن طلة
+              {t("about.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="gradient-text">طلة</span> حيث الطعم يلتقي بالجودة
+              {t("about.title")}
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              في مطعم وكافيه طلة، نؤمن بأن الطعام الجيد يبدأ من المكونات الطازجة
-              والاهتمام بأدق التفاصيل. تأسسنا لنقدم لك تجربة طعام استثنائية تجمع
-              بين النكهات العالمية واللمسة المصرية الأصيلة.
+              {t("about.desc")}
             </p>
           </div>
         </TextReveal>
@@ -97,7 +78,7 @@ export default function About() {
                   className="p-6 rounded-2xl bg-dark-card border border-dark-border hover:border-neon-blue/30 transition-all duration-500"
                 >
                   <div className="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center mb-4">
-                    <feature.icon className="text-neon-blue text-xl" />
+                    {(() => { const Icon = icons[i]; return <Icon className="text-neon-blue text-xl" />; })()}
                   </div>
                   <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>

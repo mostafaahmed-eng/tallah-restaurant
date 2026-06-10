@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaTag, FaClock, FaArrowLeft } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 import { offersData } from "../data/offersData";
 import { TextReveal, StaggerContainer, StaggerItem } from "../animations/TextReveal";
 
 export default function Offers() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const next = () =>
@@ -20,13 +22,13 @@ export default function Offers() {
         <TextReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 rounded-full bg-gold/10 border border-gold/30 text-gold text-sm font-medium mb-4">
-              🔥 عروض حصرية
+              {t("offers.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="gradient-text">عروض</span> وخصومات طلة
+              <span className="gradient-text">{t("offers.title")}</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              عروض لا تقاوم على أشهى الأطباق. اطلب الآن واستفد من الخصم
+              {t("offers.desc")}
             </p>
           </div>
         </TextReveal>
@@ -48,7 +50,7 @@ export default function Offers() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-card via-transparent to-transparent" />
                     <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-gold text-black font-bold text-sm">
-                      خصم {offer.discount}
+                      {t("offers.discount")} {offer.discount}
                     </div>
                   </div>
                   <div className="p-5">
@@ -60,16 +62,16 @@ export default function Offers() {
                     </p>
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-gray-500 line-through text-sm">
-                        {offer.oldPrice} ج.م
+                        {offer.oldPrice} {t("menu.currency")}
                       </span>
                       <span className="text-2xl font-black gradient-text">
-                        {offer.newPrice} <span className="text-sm">ج.م</span>
+                        {offer.newPrice} <span className="text-sm">{t("menu.currency")}</span>
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="flex items-center gap-1.5 text-gray-500 text-xs">
                         <FaClock />
-                        حتى {new Date(offer.validUntil).toLocaleDateString("ar-EG")}
+                        {t("offers.until")} {new Date(offer.validUntil).toLocaleDateString("ar-EG")}
                       </span>
                       <a
                         href="https://wa.me/201154930626"
@@ -77,7 +79,7 @@ export default function Offers() {
                         rel="noopener noreferrer"
                         className="text-neon-blue text-sm font-medium hover:underline"
                       >
-                        اطلب الآن
+                        {t("offers.orderNow")}
                       </a>
                     </div>
                   </div>
@@ -96,9 +98,9 @@ export default function Offers() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-card via-transparent to-transparent" />
-              <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-gold text-black font-bold text-sm">
-                خصم {offersData[activeIndex].discount}
-              </div>
+                    <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-gold text-black font-bold text-sm">
+                      {t("offers.discount")} {offersData[activeIndex].discount}
+                    </div>
             </div>
             <div className="p-5">
               <h3 className="text-xl font-bold text-white mb-2">
@@ -109,17 +111,17 @@ export default function Offers() {
               </p>
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-gray-500 line-through text-sm">
-                  {offersData[activeIndex].oldPrice} ج.م
+                  {offersData[activeIndex].oldPrice} {t("menu.currency")}
                 </span>
                 <span className="text-2xl font-black gradient-text">
-                  {offersData[activeIndex].newPrice} <span className="text-sm">ج.م</span>
+                  {offersData[activeIndex].newPrice} <span className="text-sm">{t("menu.currency")}</span>
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-gray-500 text-xs">
                   <FaClock />
                   حتى{" "}
-                  {new Date(offersData[activeIndex].validUntil).toLocaleDateString(
+                  {t("offers.until") + " " + new Date(offersData[activeIndex].validUntil).toLocaleDateString(
                     "ar-EG"
                   )}
                 </span>
@@ -129,7 +131,7 @@ export default function Offers() {
                   rel="noopener noreferrer"
                   className="text-neon-blue text-sm font-medium hover:underline"
                 >
-                  اطلب الآن ←
+                  {t("offers.orderNow")} ←
                 </a>
               </div>
             </div>

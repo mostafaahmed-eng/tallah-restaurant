@@ -2,11 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import { useLanguage } from "../context/LanguageContext";
 import { categories, menuItems } from "../data/menuData";
 import { TextReveal, StaggerContainer, StaggerItem } from "../animations/TextReveal";
 
 function MenuCard({ item }) {
   const { addItem } = useCart();
+  const { t } = useLanguage();
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
@@ -31,7 +33,7 @@ function MenuCard({ item }) {
           <div className="absolute inset-0 bg-gradient-to-t from-dark-card via-transparent to-transparent" />
           {item.popular && (
             <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-neon-blue text-black text-xs font-bold">
-              الأكثر طلباً
+              {t("menu.popular")}
             </div>
           )}
         </div>
@@ -49,7 +51,7 @@ function MenuCard({ item }) {
           </p>
           <div className="flex items-center justify-between">
             <span className="text-2xl font-black gradient-text">
-              {item.price} <span className="text-sm">ج.م</span>
+              {item.price} <span className="text-sm">{t("menu.currency")}</span>
             </span>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -58,7 +60,7 @@ function MenuCard({ item }) {
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-neon-blue/10 text-neon-blue border border-neon-blue/30 hover:bg-neon-blue hover:text-black font-medium transition-all duration-300 text-sm"
             >
               <FaShoppingCart />
-              <span>أضف</span>
+              <span>{t("menu.add")}</span>
             </motion.button>
           </div>
         </div>
@@ -67,8 +69,9 @@ function MenuCard({ item }) {
   );
 }
 
-export default function Menu() {
-  const [activeCategory, setActiveCategory] = useState("all");
+  export default function Menu() {
+    const { t } = useLanguage();
+    const [activeCategory, setActiveCategory] = useState("all");
 
   const filtered =
     activeCategory === "all"
@@ -83,13 +86,13 @@ export default function Menu() {
         <TextReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-sm font-medium mb-4">
-              قائمة الطعام
+              {t("menu.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="gradient-text">استكشف</span> منيو طلة
+              <span className="gradient-text">{t("menu.title")}</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              تشكيلة واسعة من أشهى الأطباق المعدة بأفضل المكونات الطازجة
+              {t("menu.desc")}
             </p>
           </div>
         </TextReveal>
@@ -105,7 +108,7 @@ export default function Menu() {
                 : "bg-dark-card text-gray-400 border border-dark-border hover:border-neon-blue/30 hover:text-white"
             }`}
           >
-            الكل
+            {t("menu.all")}
           </motion.button>
           {categories.map((cat) => (
             <motion.button

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 import { testimonialsData } from "../data/testimonialsData";
 import { TextReveal, StaggerContainer, StaggerItem } from "../animations/TextReveal";
 
@@ -18,6 +19,7 @@ function Stars({ count }) {
 }
 
 export default function Testimonials() {
+  const { t } = useLanguage();
   return (
     <section id="testimonials" className="section-padding relative">
       <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-secondary/30 to-dark-bg" />
@@ -26,13 +28,13 @@ export default function Testimonials() {
         <TextReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 rounded-full bg-gold/10 border border-gold/30 text-gold text-sm font-medium mb-4">
-              ★ تقييمات العملاء
+              {t("testimonials.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              ماذا يقول <span className="gradient-text">عملاؤنا</span>
+              {t("testimonials.title")}
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              آراء حقيقية من عملائنا الكرام
+              {t("testimonials.desc")}
             </p>
           </div>
         </TextReveal>
